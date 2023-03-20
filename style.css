@@ -1,0 +1,49 @@
+.stat-menus {
+  border: 2px solid blue;
+  display: inline-block;
+}
+.stat-menu1 {
+  border: 2px solid black;
+  flex-direction: row;
+  display: inline-block;
+}
+.finalizer {
+  border: 2px solid yellow;
+  display: inline;
+  align-content: center;
+}
+.stat-menu2 {
+  border: 2px solid black;
+  flex-direction: row;
+  display: inline-block;
+}
+.stat-row {
+  border: 1px solid purple;
+}
+span {
+  justify-content: start;
+  font-size: 20px;
+}
+input {
+  justify-content: end;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Hiding arrows on input number field */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
