@@ -303,5 +303,5 @@ allocater.addEventListener("click", () => {
   player.def = def.value;
   player.mdef = mdef.value;
   player.spd = spd.value;
-  // console.log(player);
+  console.log(player);
 });

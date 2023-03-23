@@ -9,7 +9,7 @@
   </head>
   <body>
     <div class="game-container">
-      <div class="title">Gladiator Gauntlet RPG</div>
+      <div class="title header"><h1>Gladiator Gauntlet RPG</h1></div>
       <div class="stats">
         <div class="chara-info-container">
           <div class="item1">
@@ -24,50 +24,48 @@
               />
             </div>
           </div>
+          <!-- <div class="chara-info"></div> -->
           <div class="item2">
-            <div class="chara-info">
-              <div class="menu">
-                <div class="Vit-row stat-row">
-                  <span>Vitality:</span>
-                  <input class="vit" type="number" value="1" readonly />
-                  <button class="vitm">-</button>
-                  <button class="vitp">+</button>
-                </div>
-                <div class="Str-row stat-row">
-                  <span>Strength:</span>
-                  <input class="str" type="number" value="1" readonly />
-                  <button class="strm">-</button>
-                  <button class="strp">+</button>
-                </div>
-                <div class="Dex-row stat-row">
-                  <span>Dexterity:</span>
-                  <input class="dex" type="number" value="1" readonly />
-                  <button class="dexm">-</button>
-                  <button class="dexp">+</button>
-                </div>
-                <div class="Res-row stat-row">
-                  <span>Resistance:</span>
-                  <input class="res" type="number" value="1" readonly />
-                  <button class="resm">-</button>
-                  <button class="resp">+</button>
-                </div>
-                <div class="Int-row stat-row">
-                  <span>Intelligence:</span>
-                  <input class="int" type="number" value="1" readonly />
-                  <button class="intm">-</button>
-                  <button class="intp">+</button>
-                </div>
-                <div class="finalizer">
-                  <span>Stat Pool: </span>
-                  <input class="statpool" type="number" value="10" readonly />
-                  <button class="allocate">Allocate Stats</button>
-                </div>
+            <div class="menu">
+              <div class="Vit-row stat-row">
+                <span>Vitality:</span>
+                <input class="vit" type="number" value="1" readonly />
+                <button class="vitm">-</button>
+                <button class="vitp">+</button>
               </div>
-                <!-- ^stat-menu1^  -->
+              <div class="Str-row stat-row">
+                <span>Strength:</span>
+                <input class="str" type="number" value="1" readonly />
+                <button class="strm">-</button>
+                <button class="strp">+</button>
+              </div>
+              <div class="Dex-row stat-row">
+                <span>Dexterity:</span>
+                <input class="dex" type="number" value="1" readonly />
+                <button class="dexm">-</button>
+                <button class="dexp">+</button>
+              </div>
+              <div class="Res-row stat-row">
+                <span>Resistance:</span>
+                <input class="res" type="number" value="1" readonly />
+                <button class="resm">-</button>
+                <button class="resp">+</button>
+              </div>
+              <div class="Int-row stat-row">
+                <span>Intelligence:</span>
+                <input class="int" type="number" value="1" readonly />
+                <button class="intm">-</button>
+                <button class="intp">+</button>
+              </div>
+              <div class="finalizer">
+                <span>Stat Pool: </span>
+                <input class="statpool" type="number" value="10" readonly />
+                <button class="allocate">Allocate Stats</button>
+              </div>
             </div>
-            
+            <!-- ^stat-menu1^  -->
           </div>
-          <div class="item3">                
+          <div class="item3">
             <div class="menu">
               <div class="HP-row stat-row">
                 <span>HP:</span>
@@ -112,52 +110,52 @@
                 <input class="spdbonus" type="number" value="0" readonly />
               </div>
             </div>
-                <!-- ^stat-menu2^ -->
+            <!-- ^stat-menu2^ -->
           </div>
           <div class="item4">
             <div class="menu">
               <div class="equiprow stat-row">
                 <span>Weapon 1: </span>
                 <input
-                class="equipvals"
-                type="text"
-                name=""
-                value="Nothing Equipped"
-                id="sword"
-                readonly
+                  class="equipvals"
+                  type="text"
+                  name=""
+                  value="Nothing Equipped"
+                  id="sword"
+                  readonly
                 />
               </div>
               <div class="equiprow stat-row">
                 <span>Weapon 2: </span>
                 <input
-                class="equipvals"
-                type="text"
-                name=""
-                value="Nothing Equipped"
-                id="wand"
-                readonly
+                  class="equipvals"
+                  type="text"
+                  name=""
+                  value="Nothing Equipped"
+                  id="wand"
+                  readonly
                 />
               </div>
               <div class="equiprow stat-row">
                 <span>Armor: </span>
                 <input
-                class="equipvals"
-                type="text"
-                name=""
-                value="Nothing Equipped"
-                id="armor"
-                readonly
+                  class="equipvals"
+                  type="text"
+                  name=""
+                  value="Nothing Equipped"
+                  id="armor"
+                  readonly
                 />
               </div>
               <div class="equiprow stat-row">
                 <span>Shield: </span>
                 <input
-                class="equipvals"
-                type="text"
-                name=""
-                value="Nothing Equipped"
-                id="shield"
-                readonly
+                  class="equipvals"
+                  type="text"
+                  name=""
+                  value="Nothing Equipped"
+                  id="shield"
+                  readonly
                 />
               </div>
             </div>
@@ -165,24 +163,26 @@
         </div>
       </div>
       <div class="battle">
-        <h1> Battle Screen</h1>
-        <div class='menu sides'>
-          <div class="menu playerside">Player Side
-            <img src="" alt="player picture">
+        <h1>Battle Screen</h1>
+        <div class="menu sides">
+          <div class="menu playerside">
+            Player Side
+            <img src="" alt="player picture" />
             <div class="menu playerbuttons">
-            <button>Attack</button>
-            <button>Magic</button>
-            <button>Defend</button>
-            <button>Run Away</button>
+              <button>Attack</button>
+              <button>Magic</button>
+              <button>Defend</button>
+              <button>Run Away</button>
+            </div>
+          </div>
+          <div class="menu playerside">
+            Enemy Side
+            <img src="" alt="enemy picture" />
+            <div class="menu enemystats">enemy stats</div>
           </div>
         </div>
-        <div class="menu playerside">Enemy Side
-          <img src="" alt="enemy picture">
-          <div class="menu enemystats">enemy stats</div>
-        </div>
-      </div></div>
-        
-      <div class="shop"><aside>
+      </div>
+      <div class="shop">
         <h1>Shop</h1>
         <div class="menu">
           <div class="shoprow stat-row">
@@ -256,29 +256,29 @@
             />
             <button>Buy</button>
           </div>
-        </aside>
+        </div>
       </div>
-      <div class="enemies">Select an Opponent
-        <div class ="enemylist">
+      <div class="enemies footer">
+        Select an Opponent
+        <div class="enemylist">
           <div class="enemymenu">
             <p>Goblin</p>
-            <img src="" alt="">
+            <img src="" alt="" />
             <button class="fightgob">Challenge</button>
           </div>
           <div class="enemymenu">
             <p>Wizard</p>
-            <img src="" alt="">
+            <img src="" alt="" />
             <button class="fightwiz">Challenge</button>
           </div>
           <div class="enemymenu">
             <p>Dragon</p>
-            <img src="" alt="">
+            <img src="" alt="" />
             <button class="fightdrg">Challenge</button>
           </div>
         </div>
       </div>
     </div>
-
     <script src="script.js"></script>
   </body>
 </html>

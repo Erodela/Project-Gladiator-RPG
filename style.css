@@ -22,11 +22,14 @@ body {
 }
 .battle {
   grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .shop {
   grid-area: right;
 }
-.monsters {
+.enemies {
   grid-area: footer;
 }
 .game-container {
@@ -35,6 +38,8 @@ body {
     "header header header"
     "statmenu main right"
     "footer footer footer";
+  grid-template-columns: 20% 60% 19%;
+  grid-template-rows: 18% 60% 20%;
   gap: 10px;
   background-color: #2196f3;
   padding: 10px;
@@ -47,36 +52,33 @@ body {
   padding: 0;
   font-size: 30px;
 }
+
 .item1 {
-  grid-area: header;
+  grid-area: header2;
 }
 .item2 {
   grid-area: levelmenu;
 }
 .item3 {
-  grid-area: main;
+  grid-area: main2;
 }
 .item4 {
-  grid-area: right;
+  grid-area: right2;
 }
-.item5 {
-  grid-area: footer;
-}
-
 .chara-info-container {
   display: grid;
   grid-template-areas:
-    "header header header"
-    "levelmenu main right ";
+    "header2 header2"
+    "levelmenu main2"
+    "right2 right2";
   gap: 0px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: inherit;
   padding: 0px;
   height: fit-content;
   width: fit-content;
 }
-
 .chara-info-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: inherit;
   text-align: center;
   padding: 0px;
   font-size: 20px;
@@ -92,11 +94,11 @@ body {
   font-weight: bold;
   top: 0;
 }
-.chara-info {
+/* .chara-info {
   border: 2px solid blue;
   display: inline-block;
   width: fit-content;
-}
+} */
 
 .menu {
   border: 2px solid black;
@@ -105,8 +107,9 @@ body {
   width: fit-content;
 }
 .finalizer {
-  border: 2px solid yellow;
-  display: inline;
+  /* border: 2px solid gold; */
+  background-color: gold;
+  display: inline-block;
   align-content: center;
 }
 
@@ -153,6 +156,7 @@ input {
 .sides {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 .playerside {
   display: flex;
