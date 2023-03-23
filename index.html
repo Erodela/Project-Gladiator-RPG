@@ -4,26 +4,213 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>new html test Gauntlet RPG</title>
+    <title>Gauntlet RPG</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="game-container">
-      <div class="title">Title</div>
-      <div class="stats">
-        <div class="chara-info-container">
-          <div class="item1">Name</div>
-          <div class="item2">Level-Up Stats</div>
-          <div class="item3">Battle Stats</div>
-          <div class="item4">Equipment</div>
-          <div class="item5">Allocate</div>
+    <header><h1>Gauntlet RPG</h1></header>
+    
+    <main>
+      <nav>
+        <h1>Character Information</h1>
+        <div class="chara-info">
+          <div class="nametag">
+            Character name:
+            <input type="text" name="" placeholder="Enter name here" id="name" />
+          </div>
+          <!-- <div class="exp-bar">Experience needed:</div> -->
+          <div class="menu">
+            <div class="Vit-row stat-row">
+              <span>Vitality:</span>
+              <input class="vit" type="number" value="1" readonly />
+              <button class="vitm">-</button>
+              <button class="vitp">+</button>
+            </div>
+            <div class="Str-row stat-row">
+              <span>Strength:</span>
+              <input class="str" type="number" value="1" readonly />
+              <button class="strm">-</button>
+              <button class="strp">+</button>
+            </div>
+            <div class="Dex-row stat-row">
+              <span>Dexterity:</span>
+              <input class="dex" type="number" value="1" readonly />
+              <button class="dexm">-</button>
+              <button class="dexp">+</button>
+            </div>
+            <div class="Res-row stat-row">
+              <span>Resistance:</span>
+              <input class="res" type="number" value="1" readonly />
+              <button class="resm">-</button>
+              <button class="resp">+</button>
+            </div>
+            <div class="Int-row stat-row">
+              <span>Intelligence:</span>
+              <input class="int" type="number" value="1" readonly />
+              <button class="intm">-</button>
+              <button class="intp">+</button>
+            </div>
+            <div class="finalizer">
+              <span>Stat Pool: </span>
+              <input class="statpool" type="number" value="10" readonly />
+              <button class="allocate">Allocate Stats</button>
+            </div>
+          </div>
+          <!-- ^stat-menu1^  -->
+          <div class="menu">
+            <div class="HP-row stat-row">
+              <span>HP:</span>
+              <input class="hp" type="number" value="5" readonly />
+              <span>+</span>
+              <input class="hpbonus" type="number" value="0" readonly />
+            </div>
+            <div class="Atk-row stat-row">
+              <span>Attack:</span>
+              <input class="atk" type="number" value="5" readonly />
+              <span>+</span>
+              <input class="atkbonus" type="number" value="0" readonly />
+            </div>
+            <div class="Mag-row stat-row">
+              <span>Magic Attack:</span>
+              <input class="mag" type="number" value="5" readonly />
+              <span>+</span>
+              <input class="magbonus" type="number" value="0" readonly />
+            </div>
+            <div class="Acc-row stat-row">
+              <span>Accuracy:</span>
+              <input class="acc" type="number" value="5" readonly />
+              <span>+</span>
+              <input class="accbonus" type="number" value="0" readonly />
+            </div>
+            <div class="Def-row stat-row">
+              <span>Defense:</span>
+              <input class="def" type="number" value="5" readonly />
+              <span>+</span>
+              <input class="defbonus" type="number" value="0" readonly />
+            </div>
+            <div class="Mag-row stat-row">
+              <span>Magic Defense:</span>
+              <input class="mdef" type="number" value="5" readonly />
+              <span>+</span>
+              <input class="mdefbonus" type="number" value="0" readonly />
+            </div>
+            <div class="Spd-row stat-row">
+              <span>Speed:</span>
+              <input class="spd" type="number" value="5" readonly />
+              <span>+</span>
+              <input class="spdbonus" type="number" value="0" readonly />
+            </div>
+          </div>
+          <!-- ^stat-menu2^ -->
+          <div class="menu">
+            <div class="equiprow stat-row">
+              <span>Weapon 1: </span>
+              <input
+                class="equipvals"
+                type="text"
+                name=""
+                value="Nothing Equipped"
+                id="sword"
+                readonly
+              />
+            </div>
+            <div class="equiprow stat-row">
+              <span>Weapon 2: </span>
+              <input
+                class="equipvals"
+                type="text"
+                name=""
+                value="Nothing Equipped"
+                id="wand"
+                readonly
+              />
+            </div>
+            <div class="equiprow stat-row">
+              <span>Armor: </span>
+              <input
+                class="equipvals"
+                type="text"
+                name=""
+                value="Nothing Equipped"
+                id="armor"
+                readonly
+              />
+            </div>
+            <div class="equiprow stat-row">
+              <span>Shield: </span>
+              <input
+                class="equipvals"
+                type="text"
+                name=""
+                value="Nothing Equipped"
+                id="shield"
+                readonly
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="battle">Battle</div>
-      <div class="shop">Shop</div>
-      <div class="monsters">Monsters</div>
-    </div>
-
+      </nav>
+      <section><h1>battle screen</h1>
+        <div class ='menu'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi totam excepturi illum sit nemo quaerat nesciunt eum provident vel fugit adipisci exercitationem hic magni placeat vero error minus, corporis tempora.</div></section></main>
+    <aside><h1>Shop</h1>
+      <div class="equipment">
+        <div class="shoprow stat-row">
+          <span>Sword: $</span>
+          <input
+            class="equipvals"
+            type="number"
+            name=""
+            value="25"
+            id="sword"
+            readonly
+          />
+        </div>
+        <div class="shoprow stat-row">
+          <span>Magic Wand: $</span>
+          <input
+            class="equipvals"
+            type="text"
+            name=""
+            value="25"
+            id="wand"
+            readonly
+          />
+        </div>
+        <div class="shoprow stat-row">
+          <span>Suit of Armor: $</span>
+          <input
+            class="equipvals"
+            type="number"
+            name=""
+            value="50"
+            id="armor"
+            readonly
+          />
+        </div>
+        <div class="shoprow stat-row">
+          <span>Kite Shield: $</span>
+          <input
+            class="equipvals"
+            type="number"
+            name=""
+            value="25"
+            id="shield"
+            readonly
+          />
+        </div>
+        <div class="shoprow stat-row">
+          <span>Freedom: $</span>
+          <input
+            class="equipvals"
+            type="number"
+            name=""
+            value="500"
+            id="shield"
+            readonly
+          />
+        </div>
+      </aside>
+    <footer><h1>monsters</h1></footer>
     <script src="script.js"></script>
   </body>
 </html>

@@ -18,7 +18,7 @@ body {
   grid-area: header;
 }
 .stats {
-  grid-area: menu;
+  grid-area: statmenu;
 }
 .battle {
   grid-area: main;
@@ -32,31 +32,26 @@ body {
 .game-container {
   display: grid;
   grid-template-areas:
-    "header header header header header"
-    "menu main main main right"
-    "menu main main main right"
-    "menu main main main right"
-    "menu main main main right"
-    "menu main main main right"
-    "menu main main main right"
-    "footer footer footer footer footer ";
+    "header header header"
+    "statmenu main right"
+    "footer footer footer";
   gap: 10px;
   background-color: #2196f3;
   padding: 10px;
-  height: inherit;
+  height: 100vh;
   width: inherit;
 }
 .game-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 20px 0;
+  padding: 0;
   font-size: 30px;
 }
 .item1 {
   grid-area: header;
 }
 .item2 {
-  grid-area: menu;
+  grid-area: levelmenu;
 }
 .item3 {
   grid-area: main;
@@ -72,86 +67,114 @@ body {
   display: grid;
   grid-template-areas:
     "header header header"
-    "menu main right "
-    "footer footer footer";
-  gap: 5px;
-  background-color: #2196f3;
-  padding: 5px;
+    "levelmenu main right ";
+  gap: 0px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0px;
+  height: fit-content;
+  width: fit-content;
 }
 
 .chara-info-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  padding: 5px;
+  padding: 0px;
   font-size: 20px;
-  width: auto;
-  height: auto;
-  display: inline-block;
+  width: fit-content;
+  height: fit-content;
+  /* display: inline-block; */
 }
 .nametag {
   border: 2px solid red;
   /* display: inline-block; */
   /* position: relative: */
-  font-size: 20px;
+  font-size: 14px;
+  font-weight: bold;
   top: 0;
 }
 .chara-info {
   border: 2px solid blue;
   display: inline-block;
+  width: fit-content;
 }
-.exp-bar {
-  display: inline-block;
-}
-.stat-menu1 {
+
+.menu {
   border: 2px solid black;
   flex-direction: row;
   display: inline-block;
-  width: 220px;
+  width: fit-content;
 }
 .finalizer {
   border: 2px solid yellow;
   display: inline;
   align-content: center;
 }
-.stat-menu2 {
-  border: 2px solid black;
-  flex-direction: row;
-  display: inline-block;
-  width: 220px;
-}
+
 .stat-row {
   border: 1px solid purple;
 }
 span {
-  justify-content: start;
+  /* justify-content: start; */
   vertical-align: middle;
-  font-size: 20px;
+  font-size: 14px;
+  font-weight: bold;
 }
 input {
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   height: 25px;
   width: 25px;
   text-align: center;
-  font-size: 20px;
+  font-size: 14px;
+  font-weight: bold;
   border: 1px solid #ddd;
   background-color: aliceblue;
   border-radius: 4px;
   display: inline-block;
   vertical-align: middle;
 }
+/* button {
+  vertical-align: middle;
+} */
 .hp,
 .atk,
 .def,
 .spd,
 .mag,
 .mdef,
-.acc {
+.acc,
+.equipvals,
+.cost {
   background-color: inherit;
   border: none;
 }
 #name {
   width: auto;
 }
+.sides {
+  display: flex;
+  flex-direction: row;
+}
+.playerside {
+  display: flex;
+  flex-direction: column;
+}
+.equipvals {
+  width: auto;
+}
+
+.enemies {
+  width: auto;
+}
+.enemylist {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.enemymenu {
+  border: 2px solid pink;
+  /* width: fit-content; */
+}
+
 /* Hiding arrows on input number field */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
