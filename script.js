@@ -1,11 +1,13 @@
 class Character {
-  constructor(name, HP, Atk, Def, Spd, Acc) {
+  constructor(name, HP, Atk, Mag, Acc, Def, Mdef, Spd) {
     this.name = name;
     this.hp = HP;
     this.atk = Atk;
-    this.def = Def;
-    this.spd = Spd;
+    this.mag = Mag;
     this.acc = Acc;
+    this.def = Def;
+    this.mdef = Mdef;
+    this.spd = Spd;
   }
 }
 
@@ -28,8 +30,8 @@ let dexCount = 0;
 let baseDex = 1;
 let resCount = 0;
 let baseRes = 1;
-let conCount = 0;
-let baseCon = 1;
+let intCount = 0;
+let baseInt = 1;
 //menu2
 let baseHp = 0;
 let baseAtk = 0;
@@ -102,6 +104,7 @@ mStr.addEventListener("click", () => {
     statPool.removeAttribute("readonly");
     strTemp.value--;
     strCount--;
+    atkBonus.value--;
     statPool.value++;
     strTemp.setAttribute("readonly", true);
     statPool.setAttribute("readonly", true);
@@ -113,6 +116,7 @@ pStr.addEventListener("click", () => {
     statPool.removeAttribute("readonly");
     strTemp.value++;
     strCount++;
+    atkBonus.value++;
     statPool.value--;
     strTemp.setAttribute("readonly", true);
     statPool.setAttribute("readonly", true);
@@ -124,6 +128,8 @@ mDex.addEventListener("click", () => {
     statPool.removeAttribute("readonly");
     dexTemp.value--;
     dexCount--;
+    spdBonus.value--;
+    accBonus.value--;
     statPool.value++;
     dexTemp.setAttribute("readonly", true);
     statPool.setAttribute("readonly", true);
@@ -135,6 +141,8 @@ pDex.addEventListener("click", () => {
     statPool.removeAttribute("readonly");
     dexTemp.value++;
     dexCount++;
+    spdBonus.value++;
+    accBonus.value++;
     statPool.value--;
     dexTemp.setAttribute("readonly", true);
     statPool.setAttribute("readonly", true);
@@ -146,6 +154,7 @@ mRes.addEventListener("click", () => {
     statPool.removeAttribute("readonly");
     resTemp.value--;
     resCount--;
+    defBonus.value--;
     statPool.value++;
     resTemp.setAttribute("readonly", true);
     statPool.setAttribute("readonly", true);
@@ -157,17 +166,20 @@ pRes.addEventListener("click", () => {
     statPool.removeAttribute("readonly");
     resTemp.value++;
     resCount++;
+    defBonus.value++;
     statPool.value--;
     resTemp.setAttribute("readonly", true);
     statPool.setAttribute("readonly", true);
   }
 });
 mInt.addEventListener("click", () => {
-  if (intTemp.value != baseCon) {
+  if (intTemp.value != baseInt) {
     intTemp.removeAttribute("readonly");
     statPool.removeAttribute("readonly");
     intTemp.value--;
-    conCount--;
+    intCount--;
+    magBonus.value--;
+    mdefBonus.value--;
     statPool.value++;
     intTemp.setAttribute("readonly", true);
     statPool.setAttribute("readonly", true);
@@ -178,7 +190,9 @@ pInt.addEventListener("click", () => {
     intTemp.removeAttribute("readonly");
     statPool.removeAttribute("readonly");
     intTemp.value++;
-    conCount++;
+    intCount++;
+    magBonus.value++;
+    mdefBonus.value++;
     statPool.value--;
     intTemp.setAttribute("readonly", true);
     statPool.setAttribute("readonly", true);
