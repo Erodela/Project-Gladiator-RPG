@@ -8,6 +8,7 @@ class Character {
     this.def = Def;
     this.mdef = Mdef;
     this.spd = Spd;
+    this.money = 0;
   }
 }
 
