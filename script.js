@@ -81,7 +81,9 @@ class Character {
     }
   }
 }
-
+alert(
+  "You are a Gladiator trying to win your freedom. Win battles to earn money and grow stronger. Earn enough money to buy your freedom. If you lose a battle, it's game over and you'll have to start over."
+);
 //creating player character
 const player = new Character();
 console.log(player);
@@ -162,9 +164,6 @@ function stageEnemy(enemy) {
   enemyDef.value = enemy.def;
   enemyMdef.value = enemy.mdef;
   enemySpd.value = enemy.spd;
-  if (enemy === goblin) {
-    ePic.src = "";
-  }
   console.log(enemy);
   battlePrep();
 }
@@ -194,8 +193,16 @@ function battlePrep() {
 }
 function battleEnd() {
   if (player.hitpoint > 0) {
-    money.value = parseInt(money.value) + 10;
-    statPool.value = parseInt(statPool.value) + 1;
+    if (enemy.name === "Goblin") {
+      money.value = parseInt(money.value) + 10;
+      statPool.value = parseInt(statPool.value) + 1;
+    } else if (enemy.name === "Wizard") {
+      money.value = parseInt(money.value) + 15;
+      statPool.value = parseInt(statPool.value) + 2;
+    } else if (enemy.name === "Dragon") {
+      money.value = parseInt(money.value) + 20;
+      statPool.value = parseInt(statPool.value) + 3;
+    }
   } else if (player.hitpoint < 1) {
     alert(
       "You lost. Start over from the beginning. The page will now refresh."
