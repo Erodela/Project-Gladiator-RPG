@@ -125,7 +125,7 @@ span {
 input {
   /* justify-content: flex-end; */
   height: 25px;
-  width: 25px;
+  width: 26px;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
@@ -135,9 +135,9 @@ input {
   display: inline-block;
   vertical-align: middle;
 }
-/* button {
+button {
   vertical-align: middle;
-} */
+}
 .hp,
 .atk,
 .def,
@@ -145,8 +145,22 @@ input {
 .mag,
 .mdef,
 .acc,
+.hp2,
+.atk2,
+.def2,
+.spd2,
+.mag2,
+.mdef2,
+.acc2,
 .equipvals,
-.cost {
+.cost,
+.foehp,
+.foeatk,
+.foemag,
+.foeacc,
+.foedef,
+.foemdef,
+.foespd {
   background-color: inherit;
   border: none;
 }
@@ -161,6 +175,7 @@ input {
 .playerside {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .equipvals {
   width: auto;
@@ -178,7 +193,10 @@ input {
   border: 2px solid pink;
   /* width: fit-content; */
 }
-
+.playerstats {
+  font-size: 14px;
+  font-weight: bold;
+}
 /* Hiding arrows on input number field */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

@@ -14,8 +14,40 @@ class Character {
     this.armor = false;
     this.shield = false;
   }
-  attack(opponent) {}
-  magattack(opponent) {}
+  attack(attacker, opponent) {
+    if (attacker.acc < Math.random()) {
+      alert(`${attack.name} missed!`);
+    } else {
+      let damage = attacker.atk - opponent.def;
+      if (damage < 0) {
+        opponent.hp -= 0; //makes sure negative numbers aren't subtracted from opponent's hp
+        alert(`${attacker.name} dealt 0 damage to ${opponent.name}!`);
+      } else {
+        opponent.hp -= damage;
+        alert(`${attacker.name} dealt ${damage} damage to ${opponent.name}!`);
+        if (opponent.hp < 0) {
+          alert(`${opponent.name} was defeated!`);
+        }
+      }
+    }
+  }
+  magAttack(attacker, opponent) {
+    if (attacker.acc < Math.random()) {
+      alert(`${attack.name} missed!`);
+    } else {
+      let damage = attacker.mag - opponent.mdef;
+      if (damage < 0) {
+        opponent.hp -= 0; //makes sure negative numbers aren't subtracted from opponent's hp
+        alert(`${attacker.name} dealt 0 damage to ${opponent.name}!`);
+      } else {
+        opponent.hp -= damage;
+        alert(`${attacker.name} dealt ${damage} damage to ${opponent.name}!`);
+        if (opponent.hp < 0) {
+          alert(`${opponent.name} was defeated!`);
+        }
+      }
+    }
+  }
 }
 
 //creating player character
@@ -35,8 +67,10 @@ fightGoblin.addEventListener("click", () => {
     randomNumber(3, 4),
     randomNumber(3, 6)
   );
-  console.log(goblin);
+  // console.log(goblin);
   //staging for battle
+  stageEnemy(goblin);
+  disableButtons();
 });
 const fightWizard = document.querySelector(".fightwiz");
 fightWizard.addEventListener("click", () => {
@@ -50,8 +84,10 @@ fightWizard.addEventListener("click", () => {
     randomNumber(8, 12),
     randomNumber(6, 9)
   );
-  console.log(wizard);
+  // console.log(wizard);
   //staging for battle
+  stageEnemy(wizard);
+  disableButtons();
 });
 const fightDragon = document.querySelector(".fightdrg");
 fightDragon.addEventListener("click", () => {
@@ -65,20 +101,70 @@ fightDragon.addEventListener("click", () => {
     randomNumber(12, 20), //mdef
     randomNumber(12, 20) //spd
   );
-  console.log(dragon);
+  // console.log(dragon);
   //staging for battle
-  enemyStats.innerHTML = `Name:${dragon.name}
-  `;
+  stageEnemy(dragon);
+  disableButtons();
 });
-
-const enemyStats = document.querySelector(".enemystats");
-
+//enemy functions
+function stageEnemy(enemy) {
+  const ename = document.querySelector(".enemyname");
+  const pic = document.querySelector(".e-pic"); //changes enemy picture
+  const enemyHP = document.querySelector(".foehp");
+  const enemyAtk = document.querySelector(".foeatk");
+  const enemyMag = document.querySelector(".foemag");
+  const enemyAcc = document.querySelector(".foeacc");
+  const enemyDef = document.querySelector(".foedef");
+  const enemyMdef = document.querySelector(".foemdef");
+  const enemySpd = document.querySelector(".foespd");
+  ename.innerHTML = enemy.name;
+  enemyHP.value = enemy.hp;
+  enemyAtk.value = enemy.atk;
+  enemyMag.value = enemy.mag;
+  enemyAcc.value = enemy.acc;
+  enemyDef.value = enemy.def;
+  enemyMdef.value = enemy.mdef;
+  enemySpd.value = enemy.spd;
+}
+function disableButtons() {
+  allocater.disabled = true;
+  fightDragon.disabled = true;
+  fightGoblin.disabled = true;
+  fightWizard.disabled = true;
+}
+function enableButtons() {
+  allocater.disabled = false;
+  fightDragon.disabled = false;
+  fightGoblin.disabled = false;
+  fightWizard.disabled = false;
+}
 //Enemy Stat generators
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 function accuracyNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min) / 10;
+}
+
+//staging Player for battle
+const pname = document.querySelector(".playername");
+const pic = document.querySelector(".p-pic"); //changes enemy picture
+const bHP = document.querySelector(".hp2");
+const bAtk = document.querySelector(".atk2");
+const bMag = document.querySelector(".mag2");
+const bAcc = document.querySelector(".acc2");
+const bDef = document.querySelector(".def2");
+const bMdef = document.querySelector(".mdef2");
+const bSpd = document.querySelector(".spd2");
+function stagePlayer(player) {
+  pname.innerHTML = player.name;
+  bHP.value = player.hp;
+  bAtk.value = player.atk;
+  bMag.value = player.mag;
+  bAcc.value = player.acc;
+  bDef.value = player.def;
+  bMdef.value = player.mdef;
+  bSpd.value = player.spd;
 }
 
 //Stat Screen
@@ -96,14 +182,6 @@ let resCount = 0;
 let baseRes = 1;
 let intCount = 0;
 let baseInt = 1;
-//menu2
-let baseHp = 0;
-let baseAtk = 0;
-let baseMag = 0; //useless variables?
-let baseAcc = 0;
-let baseDef = 0;
-let baseMdef = 0;
-let baseSpd = 0;
 //selecting buttons and stats
 //menu1
 const vitTemp = document.querySelector(".vit");
@@ -140,132 +218,86 @@ const spdBonus = document.querySelector(".spdbonus");
 //clicking on stat buttons
 mVit.addEventListener("click", () => {
   if (vitTemp.value != baseVit) {
-    vitTemp.removeAttribute("readonly");
-    statPool.removeAttribute("readonly");
-    hpBonus.removeAttribute("readonly");
     vitTemp.value--;
     vitCount--;
     hpBonus.value = parseInt(hpBonus.value) - 3;
     statPool.value++;
-    vitTemp.setAttribute("readonly", true);
-    statPool.setAttribute("readonly", true);
-    hpBonus.setAttribute("readonly", true);
   }
 });
 pVit.addEventListener("click", () => {
   if (statPool.value != 0) {
-    vitTemp.removeAttribute("readonly");
-    statPool.removeAttribute("readonly");
-    hpBonus.removeAttribute("readonly");
     vitTemp.value++;
     vitCount++;
-    hpBonus.value++;
-    hpBonus.value++;
-    hpBonus.value++;
+    hpBonus.value = parseInt(hpBonus.value) + 3;
     statPool.value--;
-    vitTemp.setAttribute("readonly", true);
-    statPool.setAttribute("readonly", true);
-    hpBonus.setAttribute("readonly", true);
   }
 });
 mStr.addEventListener("click", () => {
   if (strTemp.value != baseStr) {
-    strTemp.removeAttribute("readonly");
-    statPool.removeAttribute("readonly");
     strTemp.value--;
     strCount--;
     atkBonus.value--;
     statPool.value++;
-    strTemp.setAttribute("readonly", true);
-    statPool.setAttribute("readonly", true);
   }
 });
 pStr.addEventListener("click", () => {
   if (statPool.value != 0) {
-    strTemp.removeAttribute("readonly");
-    statPool.removeAttribute("readonly");
     strTemp.value++;
     strCount++;
     atkBonus.value++;
     statPool.value--;
-    strTemp.setAttribute("readonly", true);
-    statPool.setAttribute("readonly", true);
   }
 });
 mDex.addEventListener("click", () => {
   if (dexTemp.value != baseDex) {
-    dexTemp.removeAttribute("readonly");
-    statPool.removeAttribute("readonly");
     dexTemp.value--;
     dexCount--;
     spdBonus.value--;
     accBonus.value--;
     statPool.value++;
-    dexTemp.setAttribute("readonly", true);
-    statPool.setAttribute("readonly", true);
   }
 });
 pDex.addEventListener("click", () => {
   if (statPool.value != 0) {
-    dexTemp.removeAttribute("readonly");
-    statPool.removeAttribute("readonly");
     dexTemp.value++;
     dexCount++;
     spdBonus.value++;
     accBonus.value++;
     statPool.value--;
-    dexTemp.setAttribute("readonly", true);
-    statPool.setAttribute("readonly", true);
   }
 });
 mRes.addEventListener("click", () => {
   if (resTemp.value != baseRes) {
-    resTemp.removeAttribute("readonly");
-    statPool.removeAttribute("readonly");
     resTemp.value--;
     resCount--;
     defBonus.value--;
     statPool.value++;
-    resTemp.setAttribute("readonly", true);
-    statPool.setAttribute("readonly", true);
   }
 });
 pRes.addEventListener("click", () => {
   if (statPool.value != 0) {
-    resTemp.removeAttribute("readonly");
-    statPool.removeAttribute("readonly");
     resTemp.value++;
     resCount++;
     defBonus.value++;
     statPool.value--;
-    resTemp.setAttribute("readonly", true);
-    statPool.setAttribute("readonly", true);
   }
 });
 mInt.addEventListener("click", () => {
   if (intTemp.value != baseInt) {
-    intTemp.removeAttribute("readonly");
-    statPool.removeAttribute("readonly");
     intTemp.value--;
     intCount--;
     magBonus.value--;
     mdefBonus.value--;
     statPool.value++;
-    intTemp.setAttribute("readonly", true);
-    statPool.setAttribute("readonly", true);
   }
 });
 pInt.addEventListener("click", () => {
   if (statPool.value != 0) {
-    intTemp.removeAttribute("readonly");
-    statPool.removeAttribute("readonly");
     intTemp.value++;
     intCount++;
     magBonus.value++;
     mdefBonus.value++;
     statPool.value--;
-    intTemp.setAttribute("readonly", true);
-    statPool.setAttribute("readonly", true);
   }
 });
 //allocating stats
@@ -299,9 +331,19 @@ allocater.addEventListener("click", () => {
   player.hp = hp.value;
   player.atk = atk.value;
   player.mag = mag.value;
-  player.acc = acc.value;
+  player.acc = 5 / 10 + acc.value / 100;
   player.def = def.value;
   player.mdef = mdef.value;
   player.spd = spd.value;
+  stagePlayer(player);
   console.log(player);
 });
+
+//Battle Buttons
+//selecting buttons
+const atkButton = document.querySelector("atkbutton");
+atkButton.addEventListener("click", () => {});
+const magButton = document.querySelector("magbutton");
+magButton.addEventListener("click", () => {});
+const healButton = document.querySelector("healbutton");
+healButton.addEventListener("click", () => {});
