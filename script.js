@@ -145,6 +145,7 @@ fightDragon.addEventListener("click", () => {
 fightDragon.disabled = true;
 fightGoblin.disabled = true;
 fightWizard.disabled = true;
+
 //enemy functions
 const ename = document.querySelector(".enemyname");
 const ePic = document.querySelector(".e-pic"); //changes enemy picture
@@ -174,6 +175,7 @@ function enemyAtkChoice() {
     enemy.magAttack(player);
   }
 }
+
 //Enemy Stat generators
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -181,6 +183,7 @@ function randomNumber(min, max) {
 function accuracyNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min) / 10;
 }
+
 //battle functions
 function battlePrep() {
   allocater.disabled = true;
@@ -217,6 +220,7 @@ function battleEnd() {
   magButton.disabled = true;
   healButton.disabled = true;
 }
+
 //staging Player for battle
 const pname = document.querySelector(".playername");
 const pPic = document.querySelector(".p-pic"); //changes player picture
@@ -288,6 +292,7 @@ let resCount = 0;
 let baseRes = 1;
 let intCount = 0;
 let baseInt = 1;
+
 //selecting buttons and stats
 //menu1
 const vitTemp = document.querySelector(".vit");
@@ -306,6 +311,7 @@ const intTemp = document.querySelector(".int");
 const mInt = document.querySelector(".intm");
 const pInt = document.querySelector(".intp");
 const allocater = document.querySelector(".allocate");
+
 //menu2
 const hp = document.querySelector(".hp");
 const atk = document.querySelector(".atk");
@@ -321,6 +327,7 @@ const accBonus = document.querySelector(".accbonus");
 const defBonus = document.querySelector(".defbonus");
 const mdefBonus = document.querySelector(".mdefbonus");
 const spdBonus = document.querySelector(".spdbonus");
+
 //clicking on stat buttons
 mVit.addEventListener("click", () => {
   if (vitTemp.value != baseVit) {
@@ -406,6 +413,7 @@ pInt.addEventListener("click", () => {
     statPool.value--;
   }
 });
+
 //allocating stats
 allocater.addEventListener("click", () => {
   fightDragon.disabled = false;

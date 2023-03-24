@@ -1,11 +1,69 @@
-Project title:
+## Project title:
+
 Gladiator RPG
 A simple turn-based RPG where you fight enemies to get stronger and raise enough money to buy your freedom.
 
-Motivation:
+## Live Demo:
+
+https://erodela.github.io/Module1-Project-Gladiator-RPG/
+
+## Installation
+
+Clone the repository and open index.html.
+
+## Motivation:
+
 It's always been my dream to make video games and I was excited to make one.
 
-Technology used:
-VS Code
+## Technology used:
 
-Code Example:
+VS Code, HTML, CSS, Javascript
+
+## Code Example:
+
+const fightDragon = document.querySelector(".fightdrg");
+fightDragon.addEventListener("click", () => {
+const dragon = new Character(
+"Dragon",
+randomNumber(25, 50), //hp
+randomNumber(15, 23), //atk
+randomNumber(15, 23), //mag
+accuracyNumber(9, 11), //acc
+randomNumber(12, 20), //def
+randomNumber(12, 20), //mdef
+randomNumber(12, 20) //spd
+);
+// console.log(dragon);
+//staging for battle
+enemy = dragon;
+stageEnemy(dragon);
+});
+function stageEnemy(enemy) {
+ename.innerHTML = enemy.name;
+enemyHP.value = enemy.hp;
+enemyAtk.value = enemy.atk;
+enemyMag.value = enemy.mag;
+enemyAcc.value = enemy.acc;
+enemyDef.value = enemy.def;
+enemyMdef.value = enemy.mdef;
+enemySpd.value = enemy.spd;
+console.log(enemy);
+battlePrep();
+}
+function battlePrep() {
+allocater.disabled = true;
+fightDragon.disabled = true;
+fightGoblin.disabled = true;
+fightWizard.disabled = true;
+atkButton.disabled = false;
+magButton.disabled = false;
+healButton.disabled = false;
+}
+
+## Usage:
+
+Everything is done with the mouse. All actions are activated by clicking the various buttons.
+
+## To-dos
+
+Add more styling to the CSS. The project, while fully functional, still looks like a prototype.
