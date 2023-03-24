@@ -154,6 +154,11 @@ button {
 .acc2,
 .equipvals,
 .cost,
+.cost1,
+.cost2,
+.cost3,
+.cost4,
+.cost5,
 .foehp,
 .foeatk,
 .foemag,
@@ -172,7 +177,7 @@ button {
   flex-direction: row;
   justify-content: space-between;
 }
-.playerside {
+.frame {
   display: flex;
   flex-direction: column;
   align-items: center;

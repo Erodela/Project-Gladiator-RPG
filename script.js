@@ -2,50 +2,82 @@ class Character {
   constructor(name, HP, Atk, Mag, Acc, Def, Mdef, Spd) {
     this.name = name;
     this.hp = HP;
+    this.hitpoint = HP;
     this.atk = Atk;
     this.mag = Mag;
     this.acc = Acc;
     this.def = Def;
     this.mdef = Mdef;
     this.spd = Spd;
-    this.money = 0;
-    this.sword = false;
-    this.wand = false;
-    this.armor = false;
-    this.shield = false;
   }
-  attack(attacker, opponent) {
-    if (attacker.acc < Math.random()) {
-      alert(`${attack.name} missed!`);
+  attack(opponent) {
+    let damage = this.atk - opponent.def;
+    if (this.acc < Math.random()) {
+      alert(`${this.name} missed!`);
+      // console.log(`${this.name} missed`);
     } else {
-      let damage = attacker.atk - opponent.def;
-      if (damage < 0) {
-        opponent.hp -= 0; //makes sure negative numbers aren't subtracted from opponent's hp
-        alert(`${attacker.name} dealt 0 damage to ${opponent.name}!`);
+      if (damage < 1) {
+        //makes sure negative numbers aren't subtracted from opponent's hp
+        alert(`${this.name} dealt 0 damage to ${opponent.name}!`);
       } else {
-        opponent.hp -= damage;
-        alert(`${attacker.name} dealt ${damage} damage to ${opponent.name}!`);
-        if (opponent.hp < 0) {
+        // console.log(opponent.name + opponent.hitpoint);
+        alert(`${this.name} dealt ${damage} damage to ${opponent.name}!`);
+        if (opponent === player) {
+          player.hitpoint -= damage;
+          bHP.value = parseInt(bHP.value) - parseInt(damage);
+        } else {
+          enemy.hitpoint -= damage;
+          enemyHP.value = parseInt(enemyHP.value) - parseInt(damage);
+        }
+        if (opponent.hitpoint < 1) {
           alert(`${opponent.name} was defeated!`);
+          // console.log(`${opponent.name} was defeated`);
         }
       }
     }
   }
-  magAttack(attacker, opponent) {
-    if (attacker.acc < Math.random()) {
-      alert(`${attack.name} missed!`);
+  magAttack(opponent) {
+    let damage = this.mag - opponent.mdef;
+    // console.log("magic damage: " + damage);
+    if (this.acc < Math.random()) {
+      alert(`${this.name} missed!`);
+      // console.log(`${this.name} missed`);
     } else {
-      let damage = attacker.mag - opponent.mdef;
-      if (damage < 0) {
-        opponent.hp -= 0; //makes sure negative numbers aren't subtracted from opponent's hp
-        alert(`${attacker.name} dealt 0 damage to ${opponent.name}!`);
+      if (damage < 1) {
+        //makes sure negative numbers aren't subtracted from opponent's hp
+        alert(`${this.name} dealt 0 damage to ${opponent.name}!`);
       } else {
-        opponent.hp -= damage;
-        alert(`${attacker.name} dealt ${damage} damage to ${opponent.name}!`);
-        if (opponent.hp < 0) {
-          alert(`${opponent.name} was defeated!`);
+        // console.log(opponent.name + opponent.hitpoint);
+        alert(`${this.name} dealt ${damage} damage to ${opponent.name}!`);
+        if (opponent === player) {
+          player.hitpoint -= damage;
+          bHP.value = parseInt(bHP.value) - parseInt(damage);
+          if (player.hitpoint < 1) {
+            alert(`${opponent.name} was defeated!`);
+            // console.log(`${opponent.name} was defeated`);
+          }
+        } else {
+          enemy.hitpoint -= damage;
+          enemyHP.value = parseInt(enemyHP.value) - parseInt(damage);
+          if (enemy.hitpoint < 1) {
+            alert(`${opponent.name} was defeated!`);
+            // console.log(`${opponent.name} was defeated`);
+          }
         }
       }
+    }
+  }
+  heal() {
+    this.hitpoint = parseInt(this.hitpoint) + parseInt(this.mag);
+    console.log(this.hitpoint);
+    //snippet below prevents restoring HP above your current maximum HP
+    if (this.hitpoint > this.hp) {
+      let hpDifference = this.hitpoint - this.hp;
+      this.hitpoint -= hpDifference;
+      bHP.value = this.hitpoint;
+      console.log(this.hitpoint);
+    } else {
+      bHP.value = this.hitpoint;
     }
   }
 }
@@ -55,12 +87,13 @@ const player = new Character();
 console.log(player);
 
 //creating enemies
+let enemy;
 const fightGoblin = document.querySelector(".fightgob");
 fightGoblin.addEventListener("click", () => {
   const goblin = new Character(
     "Goblin",
     randomNumber(3, 11),
-    randomNumber(3, 6),
+    randomNumber(6, 10),
     randomNumber(3, 4),
     accuracyNumber(3, 6),
     randomNumber(3, 5),
@@ -69,8 +102,9 @@ fightGoblin.addEventListener("click", () => {
   );
   // console.log(goblin);
   //staging for battle
+  enemy = goblin;
+  // console.log(enemy);
   stageEnemy(goblin);
-  disableButtons();
 });
 const fightWizard = document.querySelector(".fightwiz");
 fightWizard.addEventListener("click", () => {
@@ -78,7 +112,7 @@ fightWizard.addEventListener("click", () => {
     "Wizard",
     randomNumber(8, 15),
     randomNumber(3, 6),
-    randomNumber(8, 12),
+    randomNumber(10, 14),
     accuracyNumber(6, 10),
     randomNumber(3, 6),
     randomNumber(8, 12),
@@ -86,16 +120,16 @@ fightWizard.addEventListener("click", () => {
   );
   // console.log(wizard);
   //staging for battle
+  enemy = wizard;
   stageEnemy(wizard);
-  disableButtons();
 });
 const fightDragon = document.querySelector(".fightdrg");
 fightDragon.addEventListener("click", () => {
   const dragon = new Character(
     "Dragon",
     randomNumber(25, 50), //hp
-    randomNumber(12, 20), //atk
-    randomNumber(12, 20), //mag
+    randomNumber(15, 23), //atk
+    randomNumber(15, 23), //mag
     accuracyNumber(9, 11), //acc
     randomNumber(12, 20), //def
     randomNumber(12, 20), //mdef
@@ -103,20 +137,23 @@ fightDragon.addEventListener("click", () => {
   );
   // console.log(dragon);
   //staging for battle
+  enemy = dragon;
   stageEnemy(dragon);
-  disableButtons();
 });
+fightDragon.disabled = true;
+fightGoblin.disabled = true;
+fightWizard.disabled = true;
 //enemy functions
+const ename = document.querySelector(".enemyname");
+const ePic = document.querySelector(".e-pic"); //changes enemy picture
+const enemyHP = document.querySelector(".foehp");
+const enemyAtk = document.querySelector(".foeatk");
+const enemyMag = document.querySelector(".foemag");
+const enemyAcc = document.querySelector(".foeacc");
+const enemyDef = document.querySelector(".foedef");
+const enemyMdef = document.querySelector(".foemdef");
+const enemySpd = document.querySelector(".foespd");
 function stageEnemy(enemy) {
-  const ename = document.querySelector(".enemyname");
-  const pic = document.querySelector(".e-pic"); //changes enemy picture
-  const enemyHP = document.querySelector(".foehp");
-  const enemyAtk = document.querySelector(".foeatk");
-  const enemyMag = document.querySelector(".foemag");
-  const enemyAcc = document.querySelector(".foeacc");
-  const enemyDef = document.querySelector(".foedef");
-  const enemyMdef = document.querySelector(".foemdef");
-  const enemySpd = document.querySelector(".foespd");
   ename.innerHTML = enemy.name;
   enemyHP.value = enemy.hp;
   enemyAtk.value = enemy.atk;
@@ -125,18 +162,15 @@ function stageEnemy(enemy) {
   enemyDef.value = enemy.def;
   enemyMdef.value = enemy.mdef;
   enemySpd.value = enemy.spd;
+  console.log(enemy);
+  battlePrep();
 }
-function disableButtons() {
-  allocater.disabled = true;
-  fightDragon.disabled = true;
-  fightGoblin.disabled = true;
-  fightWizard.disabled = true;
-}
-function enableButtons() {
-  allocater.disabled = false;
-  fightDragon.disabled = false;
-  fightGoblin.disabled = false;
-  fightWizard.disabled = false;
+function enemyAtkChoice() {
+  if (enemy.atk > enemy.mag) {
+    enemy.attack(player);
+  } else {
+    enemy.magAttack(player);
+  }
 }
 //Enemy Stat generators
 function randomNumber(min, max) {
@@ -145,10 +179,37 @@ function randomNumber(min, max) {
 function accuracyNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min) / 10;
 }
-
+//battle functions
+function battlePrep() {
+  allocater.disabled = true;
+  fightDragon.disabled = true;
+  fightGoblin.disabled = true;
+  fightWizard.disabled = true;
+  atkButton.disabled = false;
+  magButton.disabled = false;
+  healButton.disabled = false;
+}
+function battleEnd() {
+  if (player.hitpoint > 0) {
+    money.value = parseInt(money.value) + 10;
+    statPool.value = parseInt(statPool.value) + 1;
+  } else if (player.hitpoint < 1) {
+    alert(
+      "You lost. Start over from the beginning. The page will now refresh."
+    );
+    location.reload();
+  }
+  allocater.disabled = false;
+  fightDragon.disabled = false;
+  fightGoblin.disabled = false;
+  fightWizard.disabled = false;
+  atkButton.disabled = true;
+  magButton.disabled = true;
+  healButton.disabled = true;
+}
 //staging Player for battle
 const pname = document.querySelector(".playername");
-const pic = document.querySelector(".p-pic"); //changes enemy picture
+const pPic = document.querySelector(".p-pic"); //changes player picture
 const bHP = document.querySelector(".hp2");
 const bAtk = document.querySelector(".atk2");
 const bMag = document.querySelector(".mag2");
@@ -156,7 +217,41 @@ const bAcc = document.querySelector(".acc2");
 const bDef = document.querySelector(".def2");
 const bMdef = document.querySelector(".mdef2");
 const bSpd = document.querySelector(".spd2");
-function stagePlayer(player) {
+function stagePlayer() {
+  player.name = playerName.value;
+  // console.log("Name: " + player.name);
+  baseVit += vitCount;
+  baseStr += strCount;
+  baseDex += dexCount;
+  baseRes += resCount;
+  baseInt += intCount;
+  vitCount = 0;
+  strCount = 0;
+  dexCount = 0;
+  resCount = 0;
+  intCount = 0;
+  hp.value = parseInt(hp.value) + parseInt(hpBonus.value);
+  atk.value = parseInt(atk.value) + parseInt(atkBonus.value);
+  mag.value = parseInt(mag.value) + parseInt(magBonus.value);
+  acc.value = parseInt(acc.value) + parseInt(accBonus.value);
+  def.value = parseInt(def.value) + parseInt(defBonus.value);
+  mdef.value = parseInt(mdef.value) + parseInt(mdefBonus.value);
+  spd.value = parseInt(spd.value) + parseInt(spdBonus.value);
+  hpBonus.value = 0;
+  atkBonus.value = 0;
+  magBonus.value = 0;
+  accBonus.value = 0;
+  defBonus.value = 0;
+  mdefBonus.value = 0;
+  spdBonus.value = 0;
+  player.hp = hp.value;
+  player.hitpoint = hp.value;
+  player.atk = atk.value;
+  player.mag = mag.value;
+  player.acc = 5 / 10 + acc.value / 100;
+  player.def = def.value;
+  player.mdef = mdef.value;
+  player.spd = spd.value;
   pname.innerHTML = player.name;
   bHP.value = player.hp;
   bAtk.value = player.atk;
@@ -166,12 +261,12 @@ function stagePlayer(player) {
   bMdef.value = player.mdef;
   bSpd.value = player.spd;
 }
-
 //Stat Screen
 //player name
 const playerName = document.getElementById("name");
 //menu1
 const statPool = document.querySelector(".statpool");
+const statPoolBox = document.querySelector("finalizer");
 let vitCount = 0;
 let baseVit = 1;
 let strCount = 0;
@@ -302,48 +397,99 @@ pInt.addEventListener("click", () => {
 });
 //allocating stats
 allocater.addEventListener("click", () => {
-  player.name = playerName.value;
-  // console.log("Name: " + player.name);
-  baseVit += vitCount;
-  baseStr += strCount;
-  baseDex += dexCount;
-  baseRes += resCount;
-  baseInt += intCount;
-  vitCount = 0;
-  strCount = 0;
-  dexCount = 0;
-  resCount = 0;
-  intCount = 0;
-  hp.value = parseInt(hp.value) + parseInt(hpBonus.value);
-  atk.value = parseInt(atk.value) + parseInt(atkBonus.value);
-  mag.value = parseInt(mag.value) + parseInt(magBonus.value);
-  acc.value = parseInt(acc.value) + parseInt(accBonus.value);
-  def.value = parseInt(def.value) + parseInt(defBonus.value);
-  mdef.value = parseInt(mdef.value) + parseInt(mdefBonus.value);
-  spd.value = parseInt(spd.value) + parseInt(spdBonus.value);
-  hpBonus.value = 0;
-  atkBonus.value = 0;
-  magBonus.value = 0;
-  accBonus.value = 0;
-  defBonus.value = 0;
-  mdefBonus.value = 0;
-  spdBonus.value = 0;
-  player.hp = hp.value;
-  player.atk = atk.value;
-  player.mag = mag.value;
-  player.acc = 5 / 10 + acc.value / 100;
-  player.def = def.value;
-  player.mdef = mdef.value;
-  player.spd = spd.value;
-  stagePlayer(player);
+  fightDragon.disabled = false;
+  fightGoblin.disabled = false;
+  fightWizard.disabled = false;
+  stagePlayer();
   console.log(player);
+  if (playerName.value === "money") {
+    money.value = 1000;
+  } else {
+  }
 });
 
 //Battle Buttons
 //selecting buttons
-const atkButton = document.querySelector("atkbutton");
-atkButton.addEventListener("click", () => {});
-const magButton = document.querySelector("magbutton");
-magButton.addEventListener("click", () => {});
-const healButton = document.querySelector("healbutton");
-healButton.addEventListener("click", () => {});
+const atkButton = document.querySelector(".atkbutton");
+atkButton.addEventListener("click", () => {
+  if (player.spd > enemy.spd) {
+    player.attack(enemy);
+    if (enemy.hitpoint <= 0) {
+      battleEnd();
+    } else {
+      enemyAtkChoice();
+      if (player.hitpoint <= 0) {
+        battleEnd();
+      }
+    }
+  } else {
+    enemyAtkChoice();
+    if (player.hitpoint <= 0) {
+      battleEnd();
+    } else {
+      player.attack(enemy);
+      if (enemy.hitpoint < 1) {
+        battleEnd();
+      }
+    }
+  }
+});
+const magButton = document.querySelector(".magbutton");
+magButton.addEventListener("click", () => {
+  if (player.spd > enemy.spd) {
+    player.magAttack(enemy);
+    if (enemy.hitpoint < 1) {
+      battleEnd();
+    } else {
+      enemyAtkChoice();
+      if (player.hitpoint < 1) {
+        battleEnd();
+      }
+    }
+  } else {
+    enemyAtkChoice();
+    if (player.hitpoint < 1) {
+      battleEnd();
+    } else {
+      player.magAttack(enemy);
+      if (enemy.hitpoint < 1) {
+        battleEnd();
+      }
+    }
+  }
+});
+const healButton = document.querySelector(".healbutton");
+healButton.addEventListener("click", () => {
+  if (player.spd > enemy.spd) {
+    player.heal();
+    enemyAtkChoice();
+    if (player.hitpoint < 1) {
+      battleEnd();
+    }
+  } else {
+    enemyAtkChoice();
+    if (player.hitpoint < 1) {
+      battleEnd();
+    } else {
+      player.heal();
+    }
+  }
+});
+
+//Shop
+const money = document.getElementById("money");
+const buySword = document.getElementById("buysword");
+const swordCost = document.getElementById("sw");
+buySword.addEventListener("click", () => {
+  console.log("clo");
+  console.log(swordCost.value);
+  // money.value -= swordCost.value;
+  console.log(money.value);
+  if (money.value > swordCost.value) {
+    buySword.disabled = true;
+  }
+});
+const buyWand = document.getElementById("buywand");
+const buyArmor = document.getElementById("buyarmor");
+const buyShield = document.getElementById("buyshield");
+const buyFreedom = document.getElementById("buyfreedom");
