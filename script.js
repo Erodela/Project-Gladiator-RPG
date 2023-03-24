@@ -162,6 +162,9 @@ function stageEnemy(enemy) {
   enemyDef.value = enemy.def;
   enemyMdef.value = enemy.mdef;
   enemySpd.value = enemy.spd;
+  if (enemy === goblin) {
+    ePic.src = "";
+  }
   console.log(enemy);
   battlePrep();
 }
@@ -220,6 +223,7 @@ const bSpd = document.querySelector(".spd2");
 function stagePlayer() {
   player.name = playerName.value;
   // console.log("Name: " + player.name);
+  // pPic.src = "";
   baseVit += vitCount;
   baseStr += strCount;
   baseDex += dexCount;
@@ -402,8 +406,9 @@ allocater.addEventListener("click", () => {
   fightWizard.disabled = false;
   stagePlayer();
   console.log(player);
+  //cheat code for presentation to buy everything from the shop
   if (playerName.value === "money") {
-    money.value = 1000;
+    money.value = 999;
   } else {
   }
 });
@@ -481,15 +486,57 @@ const money = document.getElementById("money");
 const buySword = document.getElementById("buysword");
 const swordCost = document.getElementById("sw");
 buySword.addEventListener("click", () => {
-  console.log("clo");
-  console.log(swordCost.value);
-  // money.value -= swordCost.value;
-  console.log(money.value);
-  if (money.value > swordCost.value) {
+  if (parseInt(money.value) > parseInt(swordCost.value)) {
+    money.value -= swordCost.value;
+    atk.value = parseInt(atk.value) + 10;
     buySword.disabled = true;
+    const sword = document.getElementById("sword");
+    sword.value = "Sword: Attack +10";
   }
 });
 const buyWand = document.getElementById("buywand");
+const wandCost = document.getElementById("wa");
+buyWand.addEventListener("click", () => {
+  if (parseInt(money.value) > parseInt(wandCost.value)) {
+    money.value -= wandCost.value;
+    mag.value = parseInt(mag.value) + 10;
+    buyWand.disabled = true;
+    const wand = document.getElementById("wand");
+    wand.value = "Magic Wand: M.Attack +10";
+  }
+});
 const buyArmor = document.getElementById("buyarmor");
+const armorCost = document.getElementById("ar");
+buyArmor.addEventListener("click", () => {
+  if (parseInt(money.value) > parseInt(armorCost.value)) {
+    money.value -= armorCost.value;
+    def.value = parseInt(def.value) + 10;
+    buyArmor.disabled = true;
+    const armor = document.getElementById("armor");
+    armor.value = "Suit of Armor: Defense +10";
+  }
+});
 const buyShield = document.getElementById("buyshield");
+const shieldCost = document.getElementById("sh");
+buyShield.addEventListener("click", () => {
+  if (parseInt(money.value) > parseInt(shieldCost.value)) {
+    money.value -= shieldCost.value;
+    mdef.value = parseInt(mdef.value) + 10;
+    buyShield.disabled = true;
+    const shield = document.getElementById("shield");
+    shield.value = "Kite Shield: M.Defense +10";
+  }
+});
 const buyFreedom = document.getElementById("buyfreedom");
+const freedomCost = document.getElementById("fr");
+buyFreedom.addEventListener("click", () => {
+  if (parseInt(money.value) > parseInt(freedomCost.value)) {
+    money.value -= freedomCost.value;
+    buyFreedom.disabled = true;
+    alert(
+      "Congratulations! You bought your freedom! You win the game! You can still fight enemies if you want."
+    );
+    const freedom = document.getElementById("freedom");
+    freedom.value = "Obtained";
+  }
+});

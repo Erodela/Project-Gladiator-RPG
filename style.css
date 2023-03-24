@@ -87,7 +87,7 @@ body {
   /* display: inline-block; */
 }
 .nametag {
-  border: 2px solid red;
+  border: 2px solid black;
   /* display: inline-block; */
   /* position: relative: */
   font-size: 14px;
@@ -137,6 +137,10 @@ input {
 }
 button {
   vertical-align: middle;
+}
+.p-pic {
+  height: 100px;
+  width: 150px;
 }
 .hp,
 .atk,
@@ -194,10 +198,10 @@ button {
   flex-direction: row;
   justify-content: space-around;
 }
-.enemymenu {
-  border: 2px solid pink;
-  /* width: fit-content; */
-}
+/* .enemymenu {
+  /* border: 2px solid pink; */
+/* width: fit-content; 
+} */
 .playerstats {
   font-size: 14px;
   font-weight: bold;
